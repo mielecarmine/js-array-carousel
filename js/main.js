@@ -3,6 +3,7 @@
 const slidesContainerEl = document.getElementById("slides-container");
 const arrowNextEl = document.querySelector(".arrow-next");
 const arrowPrevEl = document.querySelector(".arrow-prev");
+const allSlides = document.getElementsByClassName("slide");
 
 // ON LOAD
 const slides = ["01.webp", "02.webp", "03.webp", "04.webp", "05.webp"];
@@ -19,50 +20,20 @@ for (let i = 0; i < slides.length; i++) {
 slidesContainerEl.innerHTML = slidesHTML;
 
 arrowNextEl.addEventListener("click", function () {
-  const currentSlide = document.querySelector(".slide.active");
-  currentSlide.classList.remove("active");
-
-  if (slideIndex >= slides.length - 1) {
-    slideIndex = 0;
-  } else {
-    slideIndex++;
-  }
-
-  const allSlides = document.getElementsByClassName("slide");
-  const newSlide = allSlides[slideIndex];
-  newSlide.classList.add("active");
+  nextSlide();
+  slideActive();
 });
 
 arrowPrevEl.addEventListener("click", function () {
-  const currentSlide = document.querySelector(".slide.active");
-  currentSlide.classList.remove("active");
-
-  if (slideIndex <= 0) {
-    slideIndex = slides.length - 1;
-  } else {
-    slideIndex--;
-  }
-
-  const allSlides = document.getElementsByClassName("slide");
-  const newSlide = allSlides[slideIndex];
-  newSlide.classList.add("active");
+  prevSlide();
+  slideActive();
 });
 
 // FUNZIONE SCORRIMENTO OGNI 3 S
 let caoruselTime;
 caoruselTime = setInterval(function () {
-  const currentSlide = document.querySelector(".slide.active");
-  currentSlide.classList.remove("active");
-
-  if (slideIndex >= slides.length - 1) {
-    slideIndex = 0;
-  } else {
-    slideIndex++;
-  }
-
-  const allSlides = document.getElementsByClassName("slide");
-  const newSlide = allSlides[slideIndex];
-  newSlide.classList.add("active");
+  nextSlide();
+  slideActive();
 }, 3000);
 
 slidesContainerEl.addEventListener("mouseenter", function () {
@@ -71,17 +42,7 @@ slidesContainerEl.addEventListener("mouseenter", function () {
 
 slidesContainerEl.addEventListener("mouseout", function () {
   caoruselTime = setInterval(function () {
-    const currentSlide = document.querySelector(".slide.active");
-    currentSlide.classList.remove("active");
-
-    if (slideIndex >= slides.length - 1) {
-      slideIndex = 0;
-    } else {
-      slideIndex++;
-    }
-
-    const allSlides = document.getElementsByClassName("slide");
-    const newSlide = allSlides[slideIndex];
-    newSlide.classList.add("active");
+    nextSlide();
+    slideActive();
   }, 3000);
 });
