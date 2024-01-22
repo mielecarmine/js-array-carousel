@@ -1,5 +1,6 @@
 // HTML ELEMENTS
 
+const carouselContainerEl = document.getElementById("carousel-container");
 const slidesContainerEl = document.getElementById("slides-container");
 const arrowNextEl = document.querySelector(".arrow-next");
 const arrowPrevEl = document.querySelector(".arrow-prev");
@@ -21,28 +22,29 @@ slidesContainerEl.innerHTML = slidesHTML;
 
 arrowNextEl.addEventListener("click", function () {
   nextSlide();
-  slideActive();
+  slideActive(slideIndex);
 });
 
 arrowPrevEl.addEventListener("click", function () {
   prevSlide();
-  slideActive();
+  slideActive(slideIndex);
 });
 
 // FUNZIONE SCORRIMENTO OGNI 3 S
 let caoruselTime;
 caoruselTime = setInterval(function () {
   nextSlide();
-  slideActive();
+  slideActive(slideIndex);
 }, 3000);
 
-slidesContainerEl.addEventListener("mouseenter", function () {
+carouselContainerEl.addEventListener("mouseenter", function () {
   clearInterval(caoruselTime);
 });
 
-slidesContainerEl.addEventListener("mouseout", function () {
+carouselContainerEl.addEventListener("mouseleave", function () {
+  clearInterval(caoruselTime);
   caoruselTime = setInterval(function () {
     nextSlide();
-    slideActive();
+    slideActive(slideIndex);
   }, 3000);
 });

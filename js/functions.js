@@ -1,5 +1,5 @@
-function slideActive() {
-  const newSlide = allSlides[slideIndex];
+function slideActive(index) {
+  const newSlide = allSlides[index];
   newSlide.classList.add("active");
 }
 
