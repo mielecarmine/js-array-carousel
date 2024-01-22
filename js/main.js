@@ -47,3 +47,41 @@ arrowPrevEl.addEventListener("click", function () {
   const newSlide = allSlides[slideIndex];
   newSlide.classList.add("active");
 });
+
+// FUNZIONE SCORRIMENTO OGNI 3 S
+let caoruselTime;
+caoruselTime = setInterval(function () {
+  const currentSlide = document.querySelector(".slide.active");
+  currentSlide.classList.remove("active");
+
+  if (slideIndex >= slides.length - 1) {
+    slideIndex = 0;
+  } else {
+    slideIndex++;
+  }
+
+  const allSlides = document.getElementsByClassName("slide");
+  const newSlide = allSlides[slideIndex];
+  newSlide.classList.add("active");
+}, 3000);
+
+slidesContainerEl.addEventListener("mouseenter", function () {
+  clearInterval(caoruselTime);
+});
+
+slidesContainerEl.addEventListener("mouseout", function () {
+  caoruselTime = setInterval(function () {
+    const currentSlide = document.querySelector(".slide.active");
+    currentSlide.classList.remove("active");
+
+    if (slideIndex >= slides.length - 1) {
+      slideIndex = 0;
+    } else {
+      slideIndex++;
+    }
+
+    const allSlides = document.getElementsByClassName("slide");
+    const newSlide = allSlides[slideIndex];
+    newSlide.classList.add("active");
+  }, 3000);
+});
